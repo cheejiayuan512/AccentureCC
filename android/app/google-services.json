@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "798743753349",
+    "firebase_url": "https://makanwhere-568ee-default-rtdb.firebaseio.com",
+    "project_id": "makanwhere-568ee",
+    "storage_bucket": "makanwhere-568ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798743753349:android:d6cd4fc4c80adbe9422fec",
+        "android_client_info": {
+          "package_name": "com.pairapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798743753349-v939p24njf3oa8c8squ6uumpq5j1ubtj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pairapp",
+            "certificate_hash": "54045d06114c2f4621feeb105dae3159b53ef578"
+          }
+        },
+        {
+          "client_id": "798743753349-pvl2vfnitlettd095c0ajl87v4n8c8su.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnMrKE2LQ15asHTZ2D1PkmDiWF1MmFPsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798743753349-pvl2vfnitlettd095c0ajl87v4n8c8su.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
