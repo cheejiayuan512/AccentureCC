@@ -39,4 +39,10 @@ async function onFacebookButtonPress() {
   // Sign-in the user with the credential
   return auth().signInWithCredential(facebookCredential);
 }
-export {onGoogleButtonPress, onFacebookButtonPress};
+
+async function onSignOutButtonPress() {
+
+  return auth().signOut()
+}
+
+export {onGoogleButtonPress, onFacebookButtonPress, onSignOutButtonPress};

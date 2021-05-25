@@ -6,42 +6,28 @@
  * @flow strict-local
  */
 
-import React, {useEffect} from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  Button,
-  useColorScheme,
-  View,
-} from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
-import {
-  Colors,
-  DebugInstructions,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import {onFacebookButtonPress, onGoogleButtonPress} from './functions';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import type { Node } from "react";
+import React, { useEffect } from "react";
+import { SafeAreaView, StatusBar, StyleSheet, Text, useColorScheme, View } from "react-native";
+import SplashScreen from "react-native-splash-screen";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { onFacebookButtonPress, onGoogleButtonPress, onSignOutButtonPress } from "./functions/functions";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { FBLoginButton, GoogleLoginButton, SignOutButton } from "./LoginComponents";
+
 GoogleSignin.configure({
   webClientId:
     '798743753349-pvl2vfnitlettd095c0ajl87v4n8c8su.apps.googleusercontent.com',
   offlineAccess: true,
 });
-import Icon from 'react-native-vector-icons/FontAwesome';
 const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
       <Text
         style={[
           styles.sectionTitle,
           {
-            color: isDarkMode ? Colors.white : Colors.black,
+            color: Colors.white,
           },
         ]}>
         {title}
@@ -51,7 +37,7 @@ const Section = ({children, title}): Node => {
         style={[
           styles.sectionDescription,
           {
-            color: isDarkMode ? Colors.light : Colors.dark,
+            color: Colors.white,
           },
         ]}>
         {children}
@@ -60,27 +46,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const FBLoginButton = (props) => {
-  return <Icon.Button
-    name="facebook"
-    backgroundColor="#3b5998"
-    onPress={props.onPress
-    }>
-    Login with Facebook
-  </Icon.Button>;
-}
-const GoogleLoginButton = (props) => {
-  return <Icon.Button
-    name="google"
-    onPress={props.onPress
-    }>
-    Login with Google
-  </Icon.Button>;
-}
-
-const Separator = () => (
-  <View style={styles.separator} />
-);
+const Separator = () => <View style={styles.separator} />;
 
 const App: () => Node = () => {
   useEffect(() => {
@@ -88,27 +54,45 @@ const App: () => Node = () => {
     SplashScreen.hide();
   }, []);
   //check if user color scheme is equal to dark mode
-  const isDarkMode = false;
 
   const backgroundStyle = {
+    flex:1,
     backgroundColor: Colors.lighter,
-
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={'light-content'} />
-        <View
-          style={{
-            backgroundColor: 'white',
-          }}>
-          <Section title="Welcome!">
-            <Text style={styles.highlight}>Sign in</Text>
-          </Section>
-          <GoogleLoginButton onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'),)} />
-          <Separator/>
-          <FBLoginButton onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'),)} />
-        </View>
+      <View
+        style={{
+          backgroundColor: '#ffffff',
+        }}>
+        <Section title="Welcome!">
+          <Text style={styles.highlight}>Sign in</Text>
+        </Section>
+        <Separator />
+
+        <GoogleLoginButton
+          onPress={() =>
+            onGoogleButtonPress().then(() =>
+              console.log('Signed in with Google!'),
+            )
+          }
+        />
+        <Separator />
+        <FBLoginButton
+          onPress={() =>
+            onFacebookButtonPress().then(() =>
+              console.log('Signed in with Facebook!'),
+            )
+          }
+        />
+        <Separator />
+        <SignOutButton
+          onPress={() =>
+            onSignOutButtonPress().then(() => console.log('User signed out!'))
+          }
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -117,10 +101,13 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+    backgroundColor: 'white',
+    color: 'black',
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
+    color: 'blue',
   },
   sectionDescription: {
     marginTop: 8,
@@ -129,6 +116,7 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+    color: 'black'
   },
   container: {
     flex: 1,
