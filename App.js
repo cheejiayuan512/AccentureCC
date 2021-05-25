@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -18,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import SplashScreen from 'react-native-splash-screen';
 import {
   Colors,
   DebugInstructions,
@@ -32,7 +32,7 @@ GoogleSignin.configure({
     '798743753349-pvl2vfnitlettd095c0ajl87v4n8c8su.apps.googleusercontent.com',
   offlineAccess: true,
 });
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -60,55 +60,55 @@ const Section = ({children, title}): Node => {
   );
 };
 
+const FBLoginButton = (props) => {
+  return <Icon.Button
+    name="facebook"
+    backgroundColor="#3b5998"
+    onPress={props.onPress
+    }>
+    Login with Facebook
+  </Icon.Button>;
+}
+const GoogleLoginButton = (props) => {
+  return <Icon.Button
+    name="google"
+    onPress={props.onPress
+    }>
+    Login with Google
+  </Icon.Button>;
+}
+
+const Separator = () => (
+  <View style={styles.separator} />
+);
+
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  useEffect(() => {
+    // Your code here
+    SplashScreen.hide();
+  }, []);
+  //check if user color scheme is equal to dark mode
+  const isDarkMode = false;
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: Colors.lighter,
+
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+      <StatusBar barStyle={'light-content'} />
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: 'white',
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to ssssee your edits.
+          <Section title="Welcome!">
+            <Text style={styles.highlight}>Sign in</Text>
           </Section>
-          <Button
-            title="Google Sign-In"
-            onPress={() =>
-              onGoogleButtonPress().then(() =>
-                console.log('Signed in with Google!'),
-              )
-            }
-          />
-          <Button
-            title="Facebook Sign-In"
-            onPress={() =>
-              onFacebookButtonPress().then(() =>
-                console.log('Signed in with Facebook!'),
-              )
-            }
-          />
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <GoogleLoginButton onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'),)} />
+          <Separator/>
+          <FBLoginButton onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'),)} />
         </View>
-      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -129,6 +129,24 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
 
