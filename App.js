@@ -6,14 +6,33 @@
  * @flow strict-local
  */
 
-import type { Node } from "react";
-import React, { useEffect } from "react";
-import { SafeAreaView, StatusBar, StyleSheet, Text, useColorScheme, View } from "react-native";
-import SplashScreen from "react-native-splash-screen";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import { onFacebookButtonPress, onGoogleButtonPress, onSignOutButtonPress } from "./functions/functions";
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import { FBLoginButton, GoogleLoginButton, SignOutButton } from "./LoginComponents";
+import type {Node} from 'react';
+import React, {useEffect} from 'react';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {
+  onFacebookButtonPress,
+  onGoogleButtonPress,
+  onSignOutButtonPress,
+} from './functions/functions';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {
+  FBLoginButton,
+  GoogleLoginButton,
+  SignOutButton,
+} from './LoginComponents';
+
+import {createStackNavigator} from '@react-navigation/stack';
+
+import {Home, }
 
 GoogleSignin.configure({
   webClientId:
@@ -56,9 +75,37 @@ const App: () => Node = () => {
   //check if user color scheme is equal to dark mode
 
   const backgroundStyle = {
-    flex:1,
+    flex: 1,
     backgroundColor: Colors.lighter,
   };
+  const Stack = createStackNavigator();
+
+  function HomeScreen() {
+
+  }
+
+  function LoginScreen() {
+
+  }
+
+  // function ProfileScreen() {
+  //
+  // }
+  //
+  // function SettingsScreen() {
+  //
+  // }
+
+  function MyStack() {
+    return (
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        {/*<Stack.Screen name="Profile" component={ProfileScreen} />*/}
+        {/*<Stack.Screen name="Settings" component={SettingsScreen} />*/}
+      </Stack.Navigator>
+    );
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -70,6 +117,7 @@ const App: () => Node = () => {
           <Text style={styles.highlight}>Sign in</Text>
         </Section>
         <Separator />
+        <MyStack />
 
         <GoogleLoginButton
           onPress={() =>
@@ -116,7 +164,7 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
-    color: 'black'
+    color: 'black',
   },
   container: {
     flex: 1,
