@@ -1,14 +1,19 @@
+/* eslint-disable */
+
 import type {Node} from 'react';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from './src/screens/Login';
+import { LoginScreen } from './src/screens/Login';
 import auth from '@react-native-firebase/auth';
 import {onSignOutButtonPress} from './functions/functions';
 import {SignOutButton} from './src/LoginComponents';
+import {Navigator} from './src/screens/Navigator.js'
 
 
 
@@ -46,16 +51,20 @@ const App: () => Node = () => {
   }
   //TODO Jeff this is your navigation part
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View>
-        <Text>Welcome!</Text>
-      </View>
-      <SignOutButton
-        onPress={() =>
-          onSignOutButtonPress().then(() => console.log('Users signed out!'))
-        }
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={backgroundStyle}>
+        <Navigator/>
+        {/*<View>*/}
+        {/*  <Text>Welcome!</Text>*/}
+        {/*</View>*/}
+        {/*<SignOutButton*/}
+        {/*  onPress={() =>*/}
+        {/*    onSignOutButtonPress().then(() => console.log('Users signed out!'))*/}
+        {/*  }*/}
+        {/*/>*/}
+      </SafeAreaView>
+    </NavigationContainer>
+
   );
 };
 

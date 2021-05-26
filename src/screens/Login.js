@@ -12,7 +12,7 @@ import {
 } from '../../functions/functions';
 const Separator = () => <View style={styles.separator} />;
 
-const LoginScreen = () => {
+export const LoginScreen = ({navigation}) => {
   return (
     <View
       style={{
@@ -24,19 +24,21 @@ const LoginScreen = () => {
       <Separator />
 
       <GoogleLoginButton
-        onPress={() =>
+        onPress={() => {
           onGoogleButtonPress().then(() =>
             console.log('Signed in with Google!'),
-          )
-        }
+          );
+          navigation.navigate('HomeScreen');
+        }}
       />
       <Separator />
       <FBLoginButton
-        onPress={() =>
+        onPress={() => {
           onFacebookButtonPress().then(() =>
             console.log('Signed in with Facebook!'),
-          )
-        }
+          );
+          navigation.navigate('HomeScreen');
+        }}
       />
       <Separator />
     </View>
@@ -82,4 +84,3 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
-export default LoginScreen;

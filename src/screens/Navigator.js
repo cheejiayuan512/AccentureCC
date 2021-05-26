@@ -1,22 +1,24 @@
+/* eslint-disable */
+
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Home} from './Home.js';
-//import {Login} from './Login.js';
+import {HomeScreen} from './Home.js';
+import {LoginScreen} from './Login.js';
+import {NavigationContainer} from '@react-navigation/native';
 //import {Settings} from './Settings.js';
 
 const Stack = createStackNavigator();
-const screenOptionStyle = {
-  headerShown: false,
-};
+// const screenOptionStyle = {
+//   headerShown: false,
+// };
 
-function Navigator() {
+export function Navigator() {
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Settings" component={Settings} />
+    <Stack.Navigator initialRouteName="Login" >
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      {/*<Stack.Screen name="Settings" component={Settings} />*/}
     </Stack.Navigator>
   );
 }
 
-export default Navigator;
