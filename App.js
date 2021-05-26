@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import type {Node} from 'react';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
@@ -39,7 +31,6 @@ const App: () => Node = () => {
     SplashScreen.hide();
     return subscriber; // unsubscribe on unmount
   }, []);
-  //check if user color scheme is equal to dark mode
 
   const backgroundStyle = {
     flex: 1,
@@ -49,6 +40,7 @@ const App: () => Node = () => {
   if (initializing) {
     return null;
   }
+
   if (!user) {
     return (
       <SafeAreaView style={backgroundStyle}>
@@ -56,6 +48,7 @@ const App: () => Node = () => {
       </SafeAreaView>
     );
   }
+  //TODO Jeff this is your homescreen part
   return (
     <SafeAreaView style={backgroundStyle}>
       <View>
