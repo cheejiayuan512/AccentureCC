@@ -10,11 +10,7 @@ import auth from '@react-native-firebase/auth';
 import {onSignOutButtonPress} from './functions/functions';
 import {SignOutButton} from './src/LoginComponents';
 
-GoogleSignin.configure({
-  webClientId:
-    '798743753349-pvl2vfnitlettd095c0ajl87v4n8c8su.apps.googleusercontent.com',
-  offlineAccess: true,
-});
+
 
 const App: () => Node = () => {
   const [initializing, setInitializing] = useState(true);
@@ -56,7 +52,7 @@ const App: () => Node = () => {
       </View>
       <SignOutButton
         onPress={() =>
-          onSignOutButtonPress().then(() => console.log('User signed out!'))
+          onSignOutButtonPress().then(() => console.log('Users signed out!'))
         }
       />
     </SafeAreaView>
