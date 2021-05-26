@@ -9,7 +9,7 @@ import {
   onFacebookButtonPress,
   onGoogleButtonPress,
   onSignOutButtonPress,
-} from '../functions/functions';
+} from '../../functions/functions';
 const Separator = () => <View style={styles.separator} />;
 
 const LoginScreen = () => {

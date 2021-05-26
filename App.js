@@ -5,10 +5,10 @@ import SplashScreen from 'react-native-splash-screen';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from './src/Login';
+import LoginScreen from './src/screens/Login';
 import auth from '@react-native-firebase/auth';
-import { onSignOutButtonPress } from "./functions/functions";
-import { SignOutButton } from "./LoginComponents";
+import {onSignOutButtonPress} from './functions/functions';
+import {SignOutButton} from './src/LoginComponents';
 
 GoogleSignin.configure({
   webClientId:
@@ -48,7 +48,7 @@ const App: () => Node = () => {
       </SafeAreaView>
     );
   }
-  //TODO Jeff this is your homescreen part
+  //TODO Jeff this is your navigation part
   return (
     <SafeAreaView style={backgroundStyle}>
       <View>
