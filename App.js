@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import type {Node} from 'react';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
@@ -51,19 +49,20 @@ const App: () => Node = () => {
   }
   //TODO Jeff this is your navigation part
   return (
-    <NavigationContainer>
-      <SafeAreaView style={backgroundStyle}>
-        <Navigator/>
-        {/*<View>*/}
-        {/*  <Text>Welcome!</Text>*/}
-        {/*</View>*/}
-        {/*<SignOutButton*/}
-        {/*  onPress={() =>*/}
-        {/*    onSignOutButtonPress().then(() => console.log('Users signed out!'))*/}
-        {/*  }*/}
-        {/*/>*/}
-      </SafeAreaView>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <SafeAreaView style={backgroundStyle}>
+    //     <Navigator/>
+        <View style={backgroundStyle}>
+          <Text>Welcome to the home page!</Text>
+          <SignOutButton
+            onPress={() =>
+              onSignOutButtonPress().then(() => console.log('Users signed out!'))
+            }
+          />
+        </View>
+
+    //   </SafeAreaView>
+    // </NavigationContainer>
 
   );
 };

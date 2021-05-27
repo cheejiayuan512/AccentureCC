@@ -1,35 +1,36 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {
-  FBLoginButton,
-  GoogleLoginButton,
-  SignOutButton,
-} from '../LoginComponents';
+import {FBLoginButton, SignOutButton} from '../LoginComponents';
 import {
   onFacebookButtonPress,
   onGoogleButtonPress,
   onSignOutButtonPress,
 } from '../../functions/functions';
 const Separator = () => <View style={styles.separator} />;
-
-export const LoginScreen = ({navigation}) => {
+import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
+import {LoginButton} from 'react-native-fbsdk';
+import {FaceBookSigninButton} from '../../functions/FBSignInButton';
+export const LoginScreen = () => {
   return (
     <View
       style={{
         backgroundColor: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
       }}>
-      <Text style={styles.highlight}>Welcome!</Text>
+      <Text style={styles.highlight}>Welcomsse!</Text>
 
-      <Text style={styles.highlight}>Sign in</Text>
+      <Text style={styles.highlight}>Sign in!</Text>
       <Separator />
-
-      <GoogleLoginButton
+      <GoogleSigninButton
         onPress={() => {
           onGoogleButtonPress().then(() =>
             console.log('Signed in with Google!'),
           );
-          navigation.navigate('HomeScreen');
         }}
+        style={{width: '50%'}}
       />
       <Separator />
       <FBLoginButton
@@ -37,8 +38,8 @@ export const LoginScreen = ({navigation}) => {
           onFacebookButtonPress().then(() =>
             console.log('Signed in with Facebook!'),
           );
-          navigation.navigate('HomeScreen');
         }}
+        style={{minWidth: '48.2%',padding:10,}}
       />
       <Separator />
     </View>
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   separator: {
-    marginVertical: 8,
+    marginVertical: 0,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
