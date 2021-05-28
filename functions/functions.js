@@ -2,6 +2,8 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import LoginFunctions from './LoginFunctions';
+import firestore from '@react-native-firebase/firestore';
+
 
 async function onGoogleButtonPress() {
   // Get the users ID token
@@ -66,4 +68,22 @@ async function onSignOutButtonPress() {
   return auth().signOut();
 }
 
-export {onGoogleButtonPress, onFacebookButtonPress, onSignOutButtonPress};
+async function AccountExistCheck(userEmail) {
+  await firestore()
+    .collection('users')
+    // Filter results
+    .where('email', '==', userEmail)
+    .get()
+    .then(querySnapshot => {
+      /* ... */
+      console.log(querySnapshot);
+      console.log('user exists!');
+      return true;
+    });
+}
+export {
+  onGoogleButtonPress,
+  onFacebookButtonPress,
+  onSignOutButtonPress,
+  AccountExistCheck,
+};

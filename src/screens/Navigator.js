@@ -1,14 +1,19 @@
 /* eslint-disable */
 
-import React from "react";
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen} from './Home';
 import {LoginScreen} from './Login.js';
 import {SettingsScreen} from './Settings.js';
-import { NavigationContainer } from "@react-navigation/native";
+import {AccountCreationScreen} from './AccountCreationScreen.js';
 import {Header} from "react-native-elements";
+import {NavigationContainer} from '@react-navigation/native';
+import {AccountExistCheck} from "../../functions/functions";
+//import {Settings} from './Settings.js';
 
 const Stack = createStackNavigator();
+
+let userToken = AccountExistCheck('scorpionchip123@gmail.com')
 
 
 export function Navigator({user}) {
@@ -22,7 +27,7 @@ export function Navigator({user}) {
         onTouchStart={console.log(user)}
       />
       <Stack.Navigator
-        initialRouteName="HomeScreen"
+        initialRouteName={ userToken ?"HomeScreen":'AccountCreationScreen'}
         screenOptions={{headerShown: false}}
         options={{
           headerLeft: ()=> false
@@ -31,6 +36,7 @@ export function Navigator({user}) {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Stack.Screen name='AccountCreationScreen' component={AccountCreationScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
