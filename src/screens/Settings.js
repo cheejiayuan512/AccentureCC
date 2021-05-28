@@ -5,6 +5,10 @@ import React from "react";
 
 export function SettingsScreen() {
   return (
-    <text>Settings</text>
+    <View>
+      <text>Settings</text>
+
+    </View>
+
   );
 }

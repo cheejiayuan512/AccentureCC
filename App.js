@@ -15,8 +15,6 @@ import {onSignOutButtonPress} from './functions/functions';
 import {SignOutButton} from './src/LoginComponents';
 import {Navigator} from './src/screens/Navigator.js'
 
-
-
 const App: () => Node = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
@@ -51,17 +49,7 @@ const App: () => Node = () => {
   }
   //TODO Jeff this is your navigation part
   return (
-    <NavigationContainer style={backgroundStyle}>
-      {/*<View>*/}
-      {/*  <Text>Welcome!</Text>*/}
-      {/*</View>*/}
-      {/*<SignOutButton*/}
-      {/*  onPress={() =>*/}
-      {/*    onSignOutButtonPress().then(() => console.log('Users signed out!'))*/}
-      {/*  }*/}
-      {/*/>*/}
       <Navigator/>
-    </NavigationContainer>
   );
 };
 
