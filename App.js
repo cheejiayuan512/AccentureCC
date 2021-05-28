@@ -6,7 +6,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {LoginScreen} from './src/screens/LoginScreen';
+import {Login} from './src/screens/Login';
 import auth from '@react-native-firebase/auth';
 import {Navigator} from './src/screens/Navigator';
 
@@ -38,18 +38,15 @@ const App: () => Node = () => {
   if (!user) {
     return (
       <SafeAreaView style={backgroundStyle}>
-        <LoginScreen />
+        <Login />
       </SafeAreaView>
     );
   }
   //TODO Jeff this is your navigation part
   return (
-    <NavigationContainer>
-      <SafeAreaView style={backgroundStyle}>
-        <Navigator user={user}/>
-      </SafeAreaView>
-    </NavigationContainer>
-
+    <SafeAreaView style={backgroundStyle}>
+      <Navigator user={user}/>
+    </SafeAreaView>
   );
 };
 

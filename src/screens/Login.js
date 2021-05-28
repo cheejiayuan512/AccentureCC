@@ -1,15 +1,11 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {FBLoginButton} from '../LoginComponents';
-import {
-  onFacebookButtonPress,
-  onGoogleButtonPress,
-} from '../../functions/functions';
-
+import {onFacebookButtonPress,onGoogleButtonPress,} from '../../functions/functions';
 import Background from '../../assets/login.png';
 const Separator = () => <View style={styles.separator} />;
 import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
-export const LoginScreen = () => {
+export const Login = () => {
   return (
     <View
       style={{

@@ -1,13 +1,11 @@
-
 import React from "react";
+import {View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, StatusBar, Image, Button, ImageBackground} from 'react-native';
 
 
-
-export function SettingsScreen() {
+export function Settings() {
   return (
     <View>
-      <text>Settings</text>
-
+      <Text>Settings</Text>
     </View>
 
   );

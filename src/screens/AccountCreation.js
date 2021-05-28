@@ -2,7 +2,7 @@ import {Button, Text, View} from 'react-native';
 import React from 'react';
 import { onGoogleButtonPress, onSignOutButtonPress } from "../../functions/functions";
 
-export function AccountCreationScreen({navigation}) {
+export function AccountCreation({navigation}) {
   return (
     <View>
       <Text>This is the Account Creation Screen</Text>

@@ -2,14 +2,13 @@
 
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {HomeScreen} from './Home';
-import {LoginScreen} from './Login.js';
-import {SettingsScreen} from './Settings.js';
-import {AccountCreationScreen} from './AccountCreationScreen.js';
+import {Home} from './Home';
+import {Login} from './Login.js';
+import {Settings} from './Settings.js';
+import {AccountCreation} from './AccountCreation.js';
 import {Header} from "react-native-elements";
 import {NavigationContainer} from '@react-navigation/native';
 import {AccountExistCheck} from "../../functions/functions";
-//import {Settings} from './Settings.js';
 
 const Stack = createStackNavigator();
 
@@ -33,10 +32,10 @@ export function Navigator({user}) {
           headerLeft: ()=> false
         }}
       >
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
-        <Stack.Screen name='AccountCreationScreen' component={AccountCreationScreen}/>
+        <Stack.Screen name="LoginScreen" component={Login} />
+        <Stack.Screen name="HomeScreen" component={Home} />
+        <Stack.Screen name="SettingsScreen" component={Settings} />
+        <Stack.Screen name='AccountCreationScreen' component={AccountCreation}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
