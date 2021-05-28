@@ -51,7 +51,7 @@ const App: () => Node = () => {
   }
   //TODO Jeff this is your navigation part
   return (
-      <Navigator/>
+      <Navigator user={user}/>
   );
 };
 

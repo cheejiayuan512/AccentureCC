@@ -13,9 +13,7 @@ export function HomeScreen() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Home') {
-            iconName = focused
-              ? 'home'
-              : 'home';
+            iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Matches') {
             iconName = focused ? 'heart' : 'heart-o';
           }
