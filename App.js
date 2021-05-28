@@ -51,20 +51,17 @@ const App: () => Node = () => {
   }
   //TODO Jeff this is your navigation part
   return (
-    <NavigationContainer>
-      <SafeAreaView style={backgroundStyle}>
-        <Navigator/>
-        {/*<View>*/}
-        {/*  <Text>Welcome!</Text>*/}
-        {/*</View>*/}
-        {/*<SignOutButton*/}
-        {/*  onPress={() =>*/}
-        {/*    onSignOutButtonPress().then(() => console.log('Users signed out!'))*/}
-        {/*  }*/}
-        {/*/>*/}
-      </SafeAreaView>
+    <NavigationContainer style={backgroundStyle}>
+      {/*<View>*/}
+      {/*  <Text>Welcome!</Text>*/}
+      {/*</View>*/}
+      {/*<SignOutButton*/}
+      {/*  onPress={() =>*/}
+      {/*    onSignOutButtonPress().then(() => console.log('Users signed out!'))*/}
+      {/*  }*/}
+      {/*/>*/}
+      <Navigator/>
     </NavigationContainer>
-
   );
 };
 
