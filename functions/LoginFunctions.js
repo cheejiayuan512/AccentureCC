@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginFunctions = {
   // PROVIDER_ID of auth provider, the credential object, and the email of the user

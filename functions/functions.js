@@ -56,6 +56,7 @@ async function onFacebookButtonPress() {
   return auth()
     .signInWithCredential(facebookCredential)
     .catch(async err => {
+      console.log(err.userInfo);
       await onGoogleButtonPress();
       await auth().currentUser.linkWithCredential(facebookCredential);
     });

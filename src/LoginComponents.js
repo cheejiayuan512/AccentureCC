@@ -1,14 +1,27 @@
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
+import {Text, View} from 'react-native';
 
 export const FBLoginButton = props => {
   return (
-    <Icon.Button
-      name="facebook"
-      backgroundColor="#3b5998"
-      onPress={props.onPress}>
-      Login with Facebook
-    </Icon.Button>
+    <View>
+      <Icon.Button
+        name="facebook"
+        backgroundColor="#3b5998"
+        onPress={props.onPress}
+        style={props.style}>
+        <Text
+          style={{
+            color: 'white',
+            fontWeight: 'bold',
+            textAlign: 'right',
+            flex: 1,
+            paddingRight: '11%',
+          }}>
+          Sign In
+        </Text>
+      </Icon.Button>
+    </View>
   );
 };
 export const GoogleLoginButton = props => {
@@ -21,7 +34,16 @@ export const GoogleLoginButton = props => {
 export const SignOutButton = props => {
   return (
     <Icon.Button name="sign-out" onPress={props.onPress}>
-      Sign Out
+      <Text
+        style={{
+          color: 'white',
+          fontWeight: 'bold',
+          textAlign: 'right',
+          flex: 1,
+          paddingRight: '11%',
+        }}>
+        Sign Out
+      </Text>
     </Icon.Button>
   );
 };
