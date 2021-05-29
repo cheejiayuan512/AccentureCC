@@ -12,7 +12,7 @@ import {AccountExistCheck} from "../../functions/functions";
 
 const Stack = createStackNavigator();
 
-let userToken = AccountExistCheck('scorpionchip123@gmail.com')
+let userToken = AccountExistCheck('scorpionchip23@gmail.com')
 
 
 export function Navigator({user}) {

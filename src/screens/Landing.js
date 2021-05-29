@@ -26,10 +26,6 @@ export function LandingScreen({navigation}) {
           <ProfileDeck/>
           <GameDeck/>
           <ActivityDeck/>
-          <SignOutButton onPress={() => navigation.navigate('LoginScreen')}/>
-        </View>
-        <View>
-          <Text>Home tetings</Text>
           <SignOutButton onPress={() => {
             onSignOutButtonPress().then(() =>
               console.log('Signed out!'),

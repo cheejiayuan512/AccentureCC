@@ -1,18 +1,25 @@
-import React from "react";
-import {View, Text, StyleSheet, Image, Button, ImageBackground} from 'react-native';
-import { LandingScreen } from "./Landing";
-import { MatchesScreen } from "./Matches";
-import Icon from "react-native-vector-icons/FontAwesome";
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  ImageBackground,
+} from 'react-native';
+import {LandingScreen} from './Landing';
+import {MatchesScreen} from './Matches';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
 export function Home() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
           let iconName;
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home';
@@ -25,13 +32,10 @@ export function Home() {
       tabBarOptions={{
         activeTintColor: 'rebeccapurple',
         inactiveTintColor: 'gray',
-        tabStyle: {backgroundColor:'whitesmoke'},
-      }}
-    >
+        tabStyle: {backgroundColor: 'whitesmoke'},
+      }}>
       <Tab.Screen name="Home" component={LandingScreen} />
       <Tab.Screen name="Matches" component={MatchesScreen} />
     </Tab.Navigator>
   );
 }
-
-

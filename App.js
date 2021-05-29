@@ -45,7 +45,7 @@ const App: () => Node = () => {
   //TODO Jeff this is your navigation part
   return (
     <SafeAreaView style={backgroundStyle}>
-      <Navigator user={user}/>
+      <Navigator user={user} />
     </SafeAreaView>
   );
 };
