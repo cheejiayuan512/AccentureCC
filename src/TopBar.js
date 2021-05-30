@@ -37,7 +37,7 @@ function UserProfile ({user, onPress1, onPress2}) {
         rounded
         source={{ uri: 'https://images.fineartamerica.com/images-medium-large-5/the-curious-otter-martyn-green.jpg', }}
         activeOpacity={1}
-        onPress={()=>console.log('did i press')}
+        onPress={()=>onPress2()}
       />
     </View>
   )
@@ -60,7 +60,7 @@ export function TopBar({user}){
       >
         <PageName user={ user }/>
         <Text/>
-        <UserProfile user={ user } onPress1={()=>console.log('clicked dogecoin')}/>
+        <UserProfile user={ user } onPress1={()=>console.log('clicked dogecoin')} onPress2={()=>toggleOverlay()}/>
       </Header>
       <Overlay isVisible={visible} onBackdropPress={()=>toggleOverlay()}>
         <Text>Hello from Overlay!</Text>
