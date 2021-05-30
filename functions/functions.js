@@ -85,7 +85,6 @@ async function AccountExistCheck(userEmail) {
         querySnapshot.forEach(doc => {
           console.log(doc);
         });
-
         return true;
       }
     });
