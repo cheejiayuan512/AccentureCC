@@ -6,7 +6,7 @@ import { ProfileDeck, GameDeck, ActivityDeck } from '../Deck';
 import {SignOutButton} from '../LoginComponents';
 import { onSignOutButtonPress } from "../../functions/functions";
 import Icon from "react-native-vector-icons/FontAwesome";
-
+import Footer from '../../assets/Footer.png';
 
 function renderDeck (item){
   return(
@@ -31,6 +31,11 @@ export function LandingScreen({navigation}) {
               console.log('Signed out!'),
             );
           }}/>
+        </View>
+        <View style={{
+            flex: 1,
+          }}>
+          <Image source={Footer} style={{width:'100%'}} resizeMode={'cover'}/>
         </View>
       </ScrollView>
     </View>

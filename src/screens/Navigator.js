@@ -9,22 +9,16 @@ import {AccountCreation} from './AccountCreation.js';
 import {Header} from "react-native-elements";
 import {NavigationContainer} from '@react-navigation/native';
 import {AccountExistCheck} from "../../functions/functions";
+import {TopBar} from '../TopBar';
 
 const Stack = createStackNavigator();
 
 let userToken = AccountExistCheck('scorpionchip23@gmail.com')
 
-
 export function Navigator({user}) {
   return (
     <NavigationContainer>
-      <Header
-        statusBarProps={{ barStyle: 'light-content' }}
-        leftComponent={{ text: user.displayName, color: 'white' }}
-        centerComponent={{ text: user, style: { color: '#fff' } }}
-        rightComponent={{ icon: 'home', color: '#fff' }}
-        onTouchStart={console.log(user)}
-      />
+      <TopBar user={user}/>
       <Stack.Navigator
         initialRouteName={ userToken ?"HomeScreen":'AccountCreationScreen'}
         screenOptions={{headerShown: false}}
