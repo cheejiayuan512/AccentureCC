@@ -1,11 +1,15 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {FBLoginButton} from '../LoginComponents';
-import {onFacebookButtonPress,onGoogleButtonPress,} from '../../functions/functions';
+import {
+  AccountExistCheck,
+  onFacebookButtonPress,
+  onGoogleButtonPress,
+} from "../../functions/functions";
 import Background from '../../assets/login.png';
 const Separator = () => <View style={styles.separator} />;
 import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
-export const Login = () => {
+export const Login = ({setAccountToken}) => {
   return (
     <View
       style={{
@@ -20,7 +24,7 @@ export const Login = () => {
         <GoogleSigninButton
           onPress={() => {
             onGoogleButtonPress().then(() =>
-              console.log('Signed in with Google!'),
+              console.log('Signed in with Google!')
             );
           }}
           style={{width: '50%'}}

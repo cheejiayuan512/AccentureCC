@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Login} from './src/screens/Login';
 import auth from '@react-native-firebase/auth';
 import {Navigator} from './src/screens/Navigator';
+import {AccountExistCheck} from './functions/functions';
 
 const App: () => Node = () => {
   const [initializing, setInitializing] = useState(true);
@@ -45,7 +46,10 @@ const App: () => Node = () => {
   //TODO Jeff this is your navigation part
   return (
     <SafeAreaView style={backgroundStyle}>
-      <Navigator user={user} />
+      <Navigator
+        user={user}
+
+      />
     </SafeAreaView>
   );
 };

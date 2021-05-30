@@ -1,37 +1,80 @@
-/* eslint-disable */
-
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Home} from './Home';
 import {Login} from './Login.js';
 import {Settings} from './Settings.js';
 import {AccountCreation} from './AccountCreation.js';
-import {Header} from "react-native-elements";
+import {Header} from 'react-native-elements';
 import {NavigationContainer} from '@react-navigation/native';
-import {AccountExistCheck} from "../../functions/functions";
+import {
+  AccountExistCheck,
+  useComponentWillMount,
+} from '../../functions/functions';
+import auth from '@react-native-firebase/auth';
+import SplashScreen from 'react-native-splash-screen';
 import {TopBar} from '../TopBar';
 
 const Stack = createStackNavigator();
 
-let userToken = AccountExistCheck('scorpionchip23@gmail.com')
+const AppStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home Screen" component={Home} />
+      <Stack.Screen name="Settings Screen" component={Settings} />
+    </Stack.Navigator>
+  );
+};
 
-export function Navigator({user}) {
+const AuthStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Sign In Screen" component={Login} />
+      <Stack.Screen name="Account Creation" component={AccountCreation} />
+    </Stack.Navigator>
+  );
+};
+
+export const Navigator = ({user}) => {
+  const [accountToken, setAccountToken] = useState(false);
+
+  useEffect(() => {
+    // Your code here
+    setAccountToken(
+      AccountExistCheck(user.email).then(response => {
+        return response;
+      }),
+    );
+  }, []);
+
   return (
     <NavigationContainer>
-      <TopBar user={user}/>
-      <Stack.Navigator
-        initialRouteName={ userToken ?"HomeScreen":'AccountCreationScreen'}
-        screenOptions={{headerShown: false}}
-        options={{
-          headerLeft: ()=> false
-        }}
-      >
-        <Stack.Screen name="LoginScreen" component={Login} />
-        <Stack.Screen name="HomeScreen" component={Home} />
-        <Stack.Screen name="SettingsScreen" component={Settings} />
-        <Stack.Screen name='AccountCreationScreen' component={AccountCreation}/>
-      </Stack.Navigator>
+      {accountToken === true ? (
+        <>
+          <TopBar user={user} />
+          <Stack.Navigator
+            screenOptions={{headerShown: false}}
+            options={{
+              headerLeft: () => false,
+            }}>
+            <Stack.Screen name="HomeScreen" component={Home} />
+            <Stack.Screen name="SettingsScreen" component={Settings} />
+          </Stack.Navigator>
+        </>
+      ) : (
+        <>
+          <Stack.Navigator
+            screenOptions={{headerShown: false}}
+            options={{
+              headerLeft: () => false,
+            }}>
+            <Stack.Screen name="LoginScreen" component={Login} />
+            <Stack.Screen
+              name="AccountCreationScreen"
+              component={AccountCreation}
+            />
+          </Stack.Navigator>
+        </>
+      )}
     </NavigationContainer>
   );
-}
-
+};

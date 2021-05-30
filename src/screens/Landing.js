@@ -37,6 +37,7 @@ export function LandingScreen({navigation}) {
           }}>
           <Image source={Footer} style={{width:'100%'}} resizeMode={'cover'}/>
         </View>
+        
       </ScrollView>
     </View>
 
