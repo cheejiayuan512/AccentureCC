@@ -18,18 +18,29 @@ const Stack = createStackNavigator();
 
 const AppStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home Screen" component={Home} />
-      <Stack.Screen name="Settings Screen" component={Settings} />
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+      options={{
+        headerLeft: () => false,
+      }}>
+      <Stack.Screen name="HomeScreen" component={Home} />
+      <Stack.Screen name="SettingsScreen" component={Settings} />
     </Stack.Navigator>
   );
 };
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Sign In Screen" component={Login} />
-      <Stack.Screen name="Account Creation" component={AccountCreation} />
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+      options={{
+        headerLeft: () => false,
+      }}>
+      <Stack.Screen name="LoginScreen" component={Login} />
+      <Stack.Screen
+        name="AccountCreationScreen"
+        component={AccountCreation}
+      />
     </Stack.Navigator>
   );
 };
@@ -51,28 +62,11 @@ export const Navigator = ({user}) => {
       {accountToken === true ? (
         <>
           <TopBar user={user} />
-          <Stack.Navigator
-            screenOptions={{headerShown: false}}
-            options={{
-              headerLeft: () => false,
-            }}>
-            <Stack.Screen name="HomeScreen" component={Home} />
-            <Stack.Screen name="SettingsScreen" component={Settings} />
-          </Stack.Navigator>
+          <AppStack/>
         </>
       ) : (
         <>
-          <Stack.Navigator
-            screenOptions={{headerShown: false}}
-            options={{
-              headerLeft: () => false,
-            }}>
-            <Stack.Screen name="LoginScreen" component={Login} />
-            <Stack.Screen
-              name="AccountCreationScreen"
-              component={AccountCreation}
-            />
-          </Stack.Navigator>
+          <AuthStack/>
         </>
       )}
     </NavigationContainer>
