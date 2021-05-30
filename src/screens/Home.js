@@ -1,5 +1,4 @@
 import React from "react";
-import {View, Text, StyleSheet, Image, Button, ImageBackground} from 'react-native';
 import { LandingScreen } from "./Landing";
 import { MatchesScreen } from "./Matches";
 import Icon from "react-native-vector-icons/FontAwesome";
