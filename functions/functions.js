@@ -3,7 +3,9 @@ import auth from '@react-native-firebase/auth';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import LoginFunctions from './LoginFunctions';
 import firestore from '@react-native-firebase/firestore';
-import {useRef} from 'react';
+import { useRef, useState } from "react";
+
+export const [accountToken, setAccountToken] = useState(false);
 
 async function onGoogleButtonPress() {
   // Get the users ID token
@@ -78,17 +80,16 @@ async function AccountExistCheck(userEmail) {
       /* ... */
       console.log(querySnapshot);
       if (querySnapshot.empty) {
-        console.log('no account created yet');
-        return false;
+        console.log('No account created yet');
+        setAccountToken(false);
       } else {
-        console.log('account created alraeady');
+        console.log('Account created already');
         querySnapshot.forEach(doc => {
           console.log(doc);
         });
-        return true;
+        setAccountToken(true);
       }
     });
-  console.log(response, 'this is response');
   return response;
 }
 
