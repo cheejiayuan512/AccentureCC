@@ -3,9 +3,8 @@ import auth from '@react-native-firebase/auth';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import LoginFunctions from './LoginFunctions';
 import firestore from '@react-native-firebase/firestore';
-import { useRef, useState } from "react";
-
-export const [accountToken, setAccountToken] = useState(false);
+import {useRef, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 async function onGoogleButtonPress() {
   // Get the users ID token
@@ -81,18 +80,20 @@ async function AccountExistCheck(userEmail) {
       console.log(querySnapshot);
       if (querySnapshot.empty) {
         console.log('No account created yet');
-        setAccountToken(false);
+        saveData('accountCheck', 'false');
       } else {
         console.log('Account created already');
         querySnapshot.forEach(doc => {
           console.log(doc);
         });
-        setAccountToken(true);
+        saveData('accountCheck', 'true');
       }
     });
-  return response;
 }
-
+async function waitCheck(email) {
+  const res = await AccountExistCheck(email);
+  return res;
+}
 const useComponentWillMount = func => {
   const willMount = useRef(true);
 
@@ -102,10 +103,29 @@ const useComponentWillMount = func => {
 
   willMount.current = false;
 };
+export async function saveData(key, value) {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (error) {
+    console.log('Error when saving data: ' + error.toString());
+  }
+}
+export async function getStringData(key, callback) {
+  let data = await AsyncStorage.getItem(key);
+  let result = JSON.parse(data);
+  callback(result);
+}
+
+export async function getData(key, callback) {
+  let data = await AsyncStorage.getItem(key);
+  console.log(data);
+  callback(data);
+}
 export {
   onGoogleButtonPress,
   onFacebookButtonPress,
   onSignOutButtonPress,
   AccountExistCheck,
   useComponentWillMount,
+  waitCheck,
 };
