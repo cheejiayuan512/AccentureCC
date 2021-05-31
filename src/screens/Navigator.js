@@ -9,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {
   AccountExistCheck,
   useComponentWillMount,
+  accountToken
 } from '../../functions/functions';
 import auth from '@react-native-firebase/auth';
 import SplashScreen from 'react-native-splash-screen';
@@ -46,20 +47,15 @@ const AuthStack = () => {
 };
 
 export const Navigator = ({user}) => {
-  const [accountToken, setAccountToken] = useState(false);
-
+  const [login, changeLogin] = useState(false)
   useEffect(() => {
-    // Your code here
-    setAccountToken(
-      AccountExistCheck(user.email).then(response => {
-        return response;
-      }),
-    );
-  }, []);
+    console.log('login');
+    changeLogin(prevState => {return !prevState} )
+  }, [accountToken]);
 
   return (
     <NavigationContainer>
-      {accountToken === true ? (
+      {login === true ? (
         <>
           <TopBar user={user} />
           <AppStack/>
