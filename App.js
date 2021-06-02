@@ -48,7 +48,7 @@ const App: () => Node = () => {
     <SafeAreaView style={backgroundStyle}>
       <Navigator
         user={user}
-
+        email={user.email}
       />
     </SafeAreaView>
   );

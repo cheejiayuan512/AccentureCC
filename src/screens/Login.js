@@ -5,7 +5,7 @@ import {
   AccountExistCheck,
   onFacebookButtonPress,
   onGoogleButtonPress,
-} from "../../functions/functions";
+} from '../../functions/functions';
 import Background from '../../assets/login.png';
 const Separator = () => <View style={styles.separator} />;
 import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
@@ -24,7 +24,7 @@ export const Login = ({setAccountToken}) => {
         <GoogleSigninButton
           onPress={() => {
             onGoogleButtonPress().then(() =>
-              console.log('Signed in with Google!')
+              console.log('Signed in with Google!'),
             );
           }}
           style={{width: '50%'}}
