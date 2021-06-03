@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Home} from './Home';
 import {Login} from './Login.js';
 import {Settings} from './Settings.js';
-import {AccountCreation} from './AccountCreation.js';
+import AccountCreation from './AccountCreation.js';
 import {Header} from 'react-native-elements';
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -46,7 +46,7 @@ const AuthStack = () => {
 
 export const Navigator = ({user}) => {
   let [accountToken, setAccountToken] = useState('false');
-  useEffect(() => {
+  useComponentWillMount(() => {
     AccountExistCheck(user.email).then(() =>
       getData('accountCheck', function (result) {
         setAccountToken(result);
