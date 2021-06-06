@@ -27,9 +27,9 @@ const AppStack = ({user}) => {
       options={{
         headerLeft: () => false,
       }}>
-      <Stack.Screen name="HomeScreen" children={()=><Home user={user} navigation={navigator}/>} />
-      <Stack.Screen name="SettingsScreen" children={()=><Settings user={user} navigation={navigator}/>} />
-      <Stack.Screen name="ActivitiesScreen" children={()=><Activities user={user} navigation={navigator}/>} />
+      <Stack.Screen name="HomeScreen" children={()=><Home user={user} />} />
+      <Stack.Screen name="SettingsScreen" children={()=><Settings user={user} />} />
+      <Stack.Screen name="ActivitiesScreen" children={()=><Activities user={user} />} />
     </Stack.Navigator>
   );
 };
