@@ -2,31 +2,22 @@
 
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, StatusBar, Image, Button, ImageBackground} from 'react-native';
+import  SearchBar  from '../SearchBar';
 import { ProfileDeck, GameDeck, ActivityDeck } from '../Deck';
 import {SignOutButton} from '../LoginComponents';
 import { onSignOutButtonPress } from "../../functions/functions";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Footer from '../../assets/Footer.png';
 
-function renderDeck (item){
-  return(
-    <View key={item.id} style={styles.cardContainer}>
-      <View>
-        <Text>Render Card</Text>
-        <Icon name="facebook" />
-      </View>
-    </View>)
-}
-
-export function LandingScreen({user, navigationMain}) {
-  console.log(navigationMain);
+export function Activities({user}) {
   return (
     <View>
+      <SearchBar  />
       <ScrollView style={styles.scrollViewVertical}>
         <View>
-          <ProfileDeck user={user} navigation={navigationMain}/>
-          <GameDeck user={user} navigation={navigationMain}/>
-          <ActivityDeck user={user} navigation={navigationMain}/>
+          <ProfileDeck/>
+          <GameDeck/>
+          <ActivityDeck/>
           <SignOutButton onPress={() => {
             onSignOutButtonPress().then(() =>
               console.log('Signed out!'),
@@ -34,8 +25,8 @@ export function LandingScreen({user, navigationMain}) {
           }}/>
         </View>
         <View style={{
-            flex: 1,
-          }}>
+          flex: 1,
+        }}>
           <Image source={Footer} style={{width:'100%',height:110}} resizeMode={'cover'}/>
         </View>
       </ScrollView>
