@@ -12,6 +12,7 @@ import {Navigator} from './src/screens/Navigator';
 import {AccountExistCheck} from './functions/functions';
 
 const App: () => Node = () => {
+  console.log("---RELOADED REACT NATIVE--- (found in App.js)")
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
   function onAuthStateChanged(user) {

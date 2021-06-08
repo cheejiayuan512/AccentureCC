@@ -2,12 +2,12 @@ import React from 'react';
 import {LandingScreen} from './Landing';
 import {MatchesScreen} from './Matches';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
-
-export function Home() {
+export function Home({user}) {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -25,9 +25,11 @@ export function Home() {
         activeTintColor: 'rebeccapurple',
         inactiveTintColor: 'gray',
         tabStyle: {backgroundColor: 'whitesmoke'},
-      }}>
-      <Tab.Screen name="Home" component={LandingScreen} />
-      <Tab.Screen name="Matches" component={MatchesScreen} />
+      }}
+      transitionSpec={'open'}
+     >
+      <Tab.Screen name="Home" children={()=><LandingScreen user={user} navigationMain={navigation}/>} />
+      <Tab.Screen name="Matches" children={()=><MatchesScreen user={user} navigationMain={navigation}/>} />
     </Tab.Navigator>
   );
 }

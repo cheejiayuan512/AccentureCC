@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Home} from './Home';
 import {Settings} from './Settings.js';
+import {Activities} from './Activities';
 import AccountCreation from './AccountCreation.js';
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -13,27 +14,28 @@ import {TopBar} from '../TopBar';
 
 const Stack = createStackNavigator();
 
-const AppStack = () => {
+const AppStack = ({user}) => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
       options={{
         headerLeft: () => false,
       }}>
-      <Stack.Screen name="HomeScreen" component={Home} />
-      <Stack.Screen name="SettingsScreen" component={Settings} />
+      <Stack.Screen name="HomeScreen" children={()=><Home user={user} />} />
+      <Stack.Screen name="SettingsScreen" children={()=><Settings user={user} />} />
+      <Stack.Screen name="ActivitiesScreen" children={()=><Activities user={user} />} />
     </Stack.Navigator>
   );
 };
 
-const AuthStack = () => {
+const AuthStack = ({user}) => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
       options={{
         headerLeft: () => false,
       }}>
-      <Stack.Screen name="AccountCreationScreen" component={AccountCreation} />
+      <Stack.Screen name="AccountCreationScreen" component={AccountCreation}  />
     </Stack.Navigator>
   );
 };
@@ -53,11 +55,11 @@ export const Navigator = ({user}) => {
       {accountToken === 'true' ? (
         <>
           <TopBar user={user} />
-          <AppStack />
+          <AppStack user={user}/>
         </>
       ) : (
         <>
-          <AuthStack />
+          <AuthStack user={user}/>
         </>
       )}
     </NavigationContainer>

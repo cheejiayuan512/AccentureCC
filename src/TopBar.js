@@ -1,6 +1,6 @@
 import { Header } from "react-native-elements";
 import React, { useState } from "react";
-import {Text, View} from 'react-native';
+import {Text, Image, View} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar,Overlay } from 'react-native-elements';
 
@@ -35,7 +35,7 @@ function UserProfile ({user, onPress1, onPress2}) {
       <Avatar
         containerStyle={{marginLeft: 15, marginRight: 7}}
         rounded
-        source={{ uri: 'https://images.fineartamerica.com/images-medium-large-5/the-curious-otter-martyn-green.jpg', }}
+        source={{ uri: user.photoURL, }} // temporarily used the google account
         activeOpacity={1}
         onPress={()=>onPress2()}
       />
@@ -63,7 +63,10 @@ export function TopBar({user}){
         <UserProfile user={ user } onPress1={()=>console.log('clicked dogecoin')} onPress2={()=>toggleOverlay()}/>
       </Header>
       <Overlay isVisible={visible} onBackdropPress={()=>toggleOverlay()}>
-        <Text>Hello from Overlay!</Text>
+        <View style={{height:350, width:300, alignContent:'center'}}>
+          <Image source={{ uri: user.photoURL }} style={{height:150, width:150, alignSelf:'center', marginBottom:15}}/>
+          <Text style={{fontSize:24, fontWeight:'bold', alignSelf:'center'}}>{user.displayName}</Text>
+        </View>
       </Overlay>
     </SafeAreaView>
   )
