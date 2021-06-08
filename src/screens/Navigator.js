@@ -1,20 +1,14 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Home} from './Home';
-import {Login} from './Login.js';
 import {Settings} from './Settings.js';
 import AccountCreation from './AccountCreation.js';
-import {Header} from 'react-native-elements';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   AccountExistCheck,
   useComponentWillMount,
-  accountToken,
-  waitCheck,
   getData,
 } from '../../functions/functions';
-import auth from '@react-native-firebase/auth';
-import SplashScreen from 'react-native-splash-screen';
 import {TopBar} from '../TopBar';
 
 const Stack = createStackNavigator();
