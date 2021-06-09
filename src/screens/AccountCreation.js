@@ -51,9 +51,6 @@ export default class AccountCreation extends Component {
   render() {
     return (
       <View style={styles.uppererContainer}>
-        <View style={styles.upperContainer}>
-          <Text style={styles.loginText} />
-        </View>
         <View style={styles.lowerContainer}>
           <AnimatedMultistep
             steps={allSteps}
@@ -62,12 +59,13 @@ export default class AccountCreation extends Component {
             onBack={this.onBack}
             onNext={this.onNext}
           />
+          <SignOutButton
+            onPress={() => {
+              onSignOutButtonPress().then(() => console.log('Signed out!'));
+            }}
+          />
         </View>
-        <SignOutButton
-          onPress={() => {
-            onSignOutButtonPress().then(() => console.log('Signed out!'));
-          }}
-        />
+
       </View>
     );
   }
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
 
   upperContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   loginText: {
@@ -89,6 +87,6 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   lowerContainer: {
-    flex: 2,
+    flex: 1,
   },
 });

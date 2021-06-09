@@ -5,6 +5,7 @@ import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RadioButton, Text, TextInput} from 'react-native-paper';
 import UploadFile from '../ImagePicker';
+import ImageCard from "../ImagePickerHelper";
 
 export class step7 extends Component {
   constructor(props) {
@@ -36,14 +37,21 @@ export class step7 extends Component {
       <View style={[styles.container, styles.step1]}>
         <View style={styles.upperContainer}>
           <Text style={styles.loginText}>Choose your pictures!</Text>
-        </View>
-        <View>
           <Text
             style={
               styles.currentStepText
             }>{`Step ${currentStep} of ${totalSteps}`}</Text>
         </View>
+        {/*this is the important part*/}
         <UploadFile />
+        {/*<View style={{width: '80%', height: '50%', flexDirection: 'row', flexWrap:'wrap', justifyContent:'space-around', alignContent:'space-between'}}>*/}
+        {/*  <ImageCard style={{width: '40%', height: '30%'}} />*/}
+        {/*  <ImageCard style={{width: '40%', height: '30%'}} />*/}
+        {/*  <ImageCard style={{width: '40%', height: '30%'}} />*/}
+        {/*  <ImageCard style={{width: '40%', height: '30%'}} />*/}
+
+
+        {/*</View>*/}
         <View style={[styles.btnContainer, styles.marginAround]}>
           <TouchableOpacity onPress={this.prevStep} style={styles.btnStyle}>
             <Image

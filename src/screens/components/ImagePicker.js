@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {Button, Image, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker'; // Migration from 2.x.x to 3.x.x => showImagePicker API is removed.
+import { Button, Image, SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImageCard from "./ImagePickerHelper";
+import { Colors, IconButton } from "react-native-paper"; // Migration from 2.x.x to 3.x.x => showImagePicker API is removed.
 const imagePickerOptions = {
   noData: true,
   selectionLimit: 0,
@@ -10,7 +12,7 @@ const UploadFile = () => {
   const uploadFile = () => {
     launchImageLibrary(imagePickerOptions, response => {
       if (response.didCancel) {
-        alert('Post canceled');
+        alert('Post cancelled');
       } else if (response.error) {
         alert('An error occurred: ', response.error);
       } else {
@@ -37,27 +39,37 @@ const UploadFile = () => {
       }
     });
   };
+  const removeItem = () =>{
+    prevActions => (
+      // Filter out the item with the matching index
+      prevActions.filter((value, i) => i !== index)
+    )
+  }
   const listItems = imageURI.map(imageSource => (
-    <Image
+    <ImageCard
       style={styles.image}
       key={imageSource.toString()}
-      source={{uri: imageSource}}
+      source={imageSource}
+      camera={takePicture}
+      gallery={uploadFile}
     />
   ));
   return (
-    <SafeAreaView>
-      <Button
-        title="Upload Pictures using Gallery"
+    <View>
+      <IconButton
+        icon="image-multiple"
+        color={Colors.red500}
+        size={20}
         onPress={uploadFile}
-        color="green"
       />
-      <Button
-        title="Take Picture with Camera"
+      <IconButton
+        icon="camera"
+        color={Colors.red500}
+        size={20}
         onPress={takePicture}
-        color="green"
       />
-      <>{imageURI !== [] ? listItems : <></>}</>
-    </SafeAreaView>
+      <View style={{width: '80%', height: '50%', flexDirection: 'row', flexWrap:'wrap', justifyContent:'space-around', alignContent:'space-between'}}>{imageURI !== [] ? listItems : <></>}</View>
+    </View>
   );
 };
 
@@ -65,7 +77,7 @@ const styles = StyleSheet.create({
   image: {
     width: 'auto',
     height: 'auto',
-    padding: 10
+    resizeMode:'contain',
   }}
 );
 
