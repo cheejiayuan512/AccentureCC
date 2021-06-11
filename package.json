@@ -33,6 +33,7 @@
     "react-native": "^0.64.1",
     "react-native-animated-multistep": "^1.1.1",
     "react-native-date-picker": "^3.3.1",
+    "react-native-draggable-flatlist": "^2.6.2",
     "react-native-elements": "^3.4.1",
     "react-native-fbsdk": "^3.0.0",
     "react-native-gesture-handler": "^1.10.3",
