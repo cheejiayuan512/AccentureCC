@@ -15,28 +15,22 @@ import {Colors, IconButton} from 'react-native-paper'; // Migration from 2.x.x t
 import DraggableFlatList, {
   RenderItemParams,
 } from 'react-native-draggable-flatlist';
+import PlaceholderImage from '../../../assets/img.png';
 
 const NUM_ITEMS = 5;
 
-function getColor(i: number) {
-  const multiplier = 255 / (NUM_ITEMS - 1);
-  const colorVal = i * multiplier;
-  return `rgb(${colorVal}, ${Math.abs(128 - colorVal)}, ${255 - colorVal})`;
-}
+
 // this is an item array
 const exampleData: Item[] = [...Array(NUM_ITEMS)].map((d, index) => {
-  const backgroundColor = getColor(index);
   return {
-    key: `item-${backgroundColor}`,
+    key: `item-${index}`,
     label: String(index),
-    backgroundColor,
   };
 });
-// defines the item type
+// defines the item type or maybe declare idk
 type Item = {
   key: string,
-  label: string,
-  backgroundColor: string,
+  label: string
 };
 
 const imagePickerOptions = {
@@ -53,24 +47,33 @@ const UploadFile = () => {
         <TouchableOpacity
           style={{
             height: 100,
-            backgroundColor: isActive ? 'red' : item.backgroundColor,
+            backgroundColor: isActive ? 'red' : 'blue',
             alignItems: 'center',
             justifyContent: 'center',
+            minWidth: '10%',
           }}
           onLongPress={drag}
-          delayLongPress={10}>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              fontSize: 32,
-            }}>
-            {item.label}
-          </Text>
+          onPress={console.log(imageURI[item.label])}
+          delayLongPress={50}>
+          <ImageCard
+            style={styles.image}
+            key={
+              imageURI[item.label] !== undefined
+                ? imageURI[item.label].toString()
+                : `placeholder-${item.label}`
+            }
+            source={
+              imageURI[item.label] !== undefined
+                ? {uri: imageURI[item.label]}
+                : PlaceholderImage
+            }
+            camera={takePicture}
+            gallery={uploadFile}
+          />
         </TouchableOpacity>
       );
     },
-    [],
+    [imageURI],
   );
   const uploadFile = () => {
     launchImageLibrary(imagePickerOptions, response => {
@@ -122,33 +125,34 @@ const UploadFile = () => {
         style={{
           width: '80%',
           height: '60%',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
+          flexDirection: 'column',
+                    justifyContent: 'center',
           alignContent: 'space-between',
           borderRadius: 10,
           padding: 10,
           backgroundColor: '#ffffff',
         }}>
-        <IconButton
-          icon="image-multiple"
-          color={Colors.red500}
-          size={20}
-          onPress={uploadFile}
-        />
-        <IconButton
-          icon="camera"
-          color={Colors.red500}
-          size={20}
-          onPress={takePicture}
-        />
-        {imageURI !== [] ? listItems : <></>}
+        <View>
+          <IconButton
+            icon="image-multiple"
+            color={Colors.red500}
+            size={20}
+            onPress={uploadFile}
+          />
+          <IconButton
+            icon="camera"
+            color={Colors.red500}
+            size={20}
+            onPress={takePicture}
+          />
+        </View>
         <DraggableFlatList
           data={data} // the Item Array
           horizontal={true} // horizontal view
           renderItem={renderItem} // the item to render based on the props supplied by the Item Array 'data'
           keyExtractor={(item, index) => `draggable-item-${item.key}`} //extract the key??
           onDragEnd={({data}) => setData(data)} // set the indexes of the item array
+          style={{width: '60%'}}
         />
       </View>
     </View>

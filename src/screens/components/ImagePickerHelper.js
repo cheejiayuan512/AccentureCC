@@ -5,22 +5,22 @@ import {IconButton, Colors} from 'react-native-paper';
 const ImageCard = ({source, style, camera, gallery}) => (
   <Card style={style}>
     <Card.Actions>
-      <IconButton
-        icon="camera"
-        color={Colors.red500}
-        size={20}
-        onPress={() => {
-          camera();
-        }}
-      />
-      <IconButton
-        icon="image-multiple"
-        color={Colors.red500}
-        size={20}
-        onPress={() => {
-          gallery();
-        }}
-      />
+      {/*<IconButton*/}
+      {/*  icon="camera"*/}
+      {/*  color={Colors.red500}*/}
+      {/*  size={20}*/}
+      {/*  onPress={() => {*/}
+      {/*    camera();*/}
+      {/*  }}*/}
+      {/*/>*/}
+      {/*<IconButton*/}
+      {/*  icon="image-multiple"*/}
+      {/*  color={Colors.red500}*/}
+      {/*  size={20}*/}
+      {/*  onPress={() => {*/}
+      {/*    gallery();*/}
+      {/*  }}*/}
+      {/*/>*/}
       <IconButton
         icon="close"
         color={Colors.red500}
@@ -29,7 +29,7 @@ const ImageCard = ({source, style, camera, gallery}) => (
       />
     </Card.Actions>
 
-    <Card.Cover source={{uri: source}} />
+    <Card.Cover source={source} />
   </Card>
 );
 
