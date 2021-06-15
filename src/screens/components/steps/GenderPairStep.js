@@ -5,21 +5,21 @@ import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RadioButton, Text, TextInput} from 'react-native-paper';
 
-export class step6 extends Component {
+export class step7 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       totalSteps: '',
       currentStep: '',
-      university: 'NTU',
+      gender: 'Male',
     };
   }
   componentDidMount() {
-    AsyncStorage.getItem('university')
+    AsyncStorage.getItem('gender')
       .then(value => {
         if (value !== null) {
           // saved input is available
-          this.setState({university: value}); // Note: update state with last entered value
+          this.setState({gender: value}); // Note: update state with last entered value
         }
       })
       .done();
@@ -33,14 +33,14 @@ export class step6 extends Component {
   };
   nextStep = () => {
     const {next, saveState} = this.props;
-    saveState({university: this.state.university});
-    AsyncStorage.setItem('university', this.state.university); // Note: persist input
+    saveState({gender: this.state.gender});
+    AsyncStorage.setItem('gender', this.state.gender); // Note: persist input
     next();
   };
   prevStep = () => {
     const {back} = this.props;
     // Go to previous step
-    AsyncStorage.setItem('university', this.state.university); // Note: persist input
+    AsyncStorage.setItem('gender', this.state.gender); // Note: persist input
     back();
   };
   render() {
@@ -48,7 +48,7 @@ export class step6 extends Component {
     return (
       <View style={[styles.container, styles.step1]}>
         <View style={styles.upperContainer}>
-          <Text style={styles.loginText}>I come from...</Text>
+          <Text style={styles.loginText}>I want to pair with...</Text>
         </View>
         <View>
           <Text
@@ -58,30 +58,22 @@ export class step6 extends Component {
         </View>
         <RadioButton.Group
           onValueChange={newValue =>
-            this.setState({university: newValue}, () => {
-              console.log(this.state.university);
+            this.setState({gender: newValue}, () => {
+              console.log(this.state.gender);
             })
           }
-          value={this.state.university}>
+          value={this.state.gender}>
           <View>
-            <Text >NTU</Text>
-            <RadioButton value="NTU" />
+            <Text style={styles.loginText}>Guys!</Text>
+            <RadioButton value="Male" />
           </View>
           <View>
-            <Text >NUS</Text>
-            <RadioButton value="NUS" />
+            <Text style={styles.loginText}>Girls!</Text>
+            <RadioButton value="Female" />
           </View>
           <View>
-            <Text >SMU</Text>
-            <RadioButton value="SMU" />
-          </View>
-          <View>
-            <Text >SUTD</Text>
-            <RadioButton value="SUTD" />
-          </View>
-          <View>
-            <Text >SIT</Text>
-            <RadioButton value="SIT" />
+            <Text style={styles.loginText}>Everybody!</Text>
+            <RadioButton value="All" />
           </View>
         </RadioButton.Group>
         <View style={[styles.btnContainer, styles.marginAround]}>
@@ -105,4 +97,4 @@ export class step6 extends Component {
   }
 }
 
-export default step6;
+export default step7;

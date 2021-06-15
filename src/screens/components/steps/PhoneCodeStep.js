@@ -10,6 +10,7 @@ export class PhoneCodeStep extends Component {
       totalSteps: '',
       currentStep: '',
     };
+
   }
 
   static getDerivedStateFromProps = props => {
@@ -22,7 +23,7 @@ export class PhoneCodeStep extends Component {
 
   nextStep = () => {
     const {next, saveState} = this.props;
-    saveState({email: 'sam@test.com'});
+    saveState({phoneCode: this.state.phoneCode});
     next();
   };
 
@@ -39,18 +40,12 @@ export class PhoneCodeStep extends Component {
               styles.currentStepText
             }>{`Step ${currentStep} of ${totalSteps}`}</Text>
         </View>
+      <Text style={styles.currentStepText}>Please wait for the verification SMS</Text>
         <TextInput
           style={styles.input}
-          onChangeText={text => this.setState({text})}
-          value={this.state.text}
-          placeholder={'Email'}
-          placeholderTextColor="#fff"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({text})}
-          value={this.state.text}
-          placeholder={'Phone Number'}
+          onChangeText={text => this.setState({phoneCode: text})}
+          value={this.state.phoneCode}
+          placeholder={'Phone Code'}
           placeholderTextColor="#fff"
         />
         <View style={[styles.btnContainer, styles.marginAround]}>
