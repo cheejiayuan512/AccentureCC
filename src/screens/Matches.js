@@ -1,8 +1,11 @@
 
 import React from "react";
-import {StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import {SignOutButton} from '../LoginComponents';
 import {Avatar} from "react-native-elements/dist/avatar/Avatar";
+import { GroupDeck, MessageDeck, NewMatchDeck } from "../Deck";
+import { onSignOutButtonPress } from "../../functions/functions";
+import Footer from "../../assets/Footer.png";
 
 function getMatches({user}){
   return (
@@ -18,7 +21,6 @@ function ListOfChats({user}){ // here i just repeated the user 10 times. in futu
     } else {
       indents.push(<Chats user={user} altColour={false}/>);
     }
-
   }
   return indents;
 }
@@ -48,13 +50,34 @@ function Chats({user, altColour}){
 
 export function MatchesScreen({user, navigationMain}) {
   return (
-    <View >
-      <View style={{backgroundColor:'rebeccapurple'}}>
-        <Text style={{fontSize:25, fontWeight:'bold', margin:15, color:'white'}}>Your Matches</Text>
-      </View>
-      <ScrollView style={{backgroundColor:'white'}}>
-        <ListOfChats user={user}/>
+    <View>
+      <ScrollView style={styles.scrollViewVertical} nestedScrollEnabled = {true}>
+        <View>
+          <NewMatchDeck user={user} navigation={navigationMain}/>
+          <MessageDeck user={user} navigation={navigationMain}/>
+          <GroupDeck user={user} navigation={navigationMain}/>
+          <SignOutButton onPress={() => {
+            onSignOutButtonPress().then(() =>
+              console.log('Signed out!'),
+            );
+          }}/>
+        </View>
+        <View style={{
+          flex: 1,
+        }}>
+          <Image source={Footer} style={{width:'100%',height:110}} resizeMode={'cover'}/>
+        </View>
       </ScrollView>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  scrollViewVertical: {
+    backgroundColor: 'whitesmoke',
+    marginHorizontal: 0,
+  },
+  text: {
+    fontSize: 42,
+  },
+});
