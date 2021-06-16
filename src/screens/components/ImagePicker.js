@@ -16,9 +16,11 @@ import DraggableFlatList, {
   RenderItemParams,
 } from 'react-native-draggable-flatlist';
 import PlaceholderImage from '../../../assets/img.png';
+import RNFS from 'react-native-fs';
 
-const NUM_ITEMS = 5;
-
+const NUM_ITEMS = 3;
+const PASSIVE_IMAGE_COLOUR = 'white';
+const ACTIVE_IMAGE_COLOUR = 'red';
 
 // this is an item array
 const exampleData: Item[] = [...Array(NUM_ITEMS)].map((d, index) => {
@@ -30,7 +32,7 @@ const exampleData: Item[] = [...Array(NUM_ITEMS)].map((d, index) => {
 // defines the item type or maybe declare idk
 type Item = {
   key: string,
-  label: string
+  label: string,
 };
 
 const imagePickerOptions = {
@@ -47,14 +49,15 @@ const UploadFile = () => {
         <TouchableOpacity
           style={{
             height: 100,
-            backgroundColor: isActive ? 'red' : 'blue',
+            width: 100,
+            backgroundColor: isActive
+              ? ACTIVE_IMAGE_COLOUR
+              : PASSIVE_IMAGE_COLOUR,
             alignItems: 'center',
             justifyContent: 'center',
-            minWidth: '10%',
           }}
           onLongPress={drag}
-          onPress={console.log(imageURI[item.label])}
-          delayLongPress={50}>
+          delayLongPress={10}>
           <ImageCard
             style={styles.image}
             key={
@@ -121,39 +124,31 @@ const UploadFile = () => {
   ));
   return (
     <View>
+      <IconButton
+        icon="image-multiple"
+        color={Colors.red500}
+        size={20}
+        onPress={uploadFile}
+      />
+      <IconButton
+        icon="camera"
+        color={Colors.red500}
+        size={20}
+        onPress={takePicture}
+      />
       <View
-        style={{
-          width: '80%',
-          height: '60%',
-          flexDirection: 'column',
-                    justifyContent: 'center',
-          alignContent: 'space-between',
-          borderRadius: 10,
-          padding: 10,
-          backgroundColor: '#ffffff',
-        }}>
-        <View>
-          <IconButton
-            icon="image-multiple"
-            color={Colors.red500}
-            size={20}
-            onPress={uploadFile}
-          />
-          <IconButton
-            icon="camera"
-            color={Colors.red500}
-            size={20}
-            onPress={takePicture}
-          />
+        style={styles.upperScreen}>
+        <View style={styles.screen}>
+          <View style={{flex: 1}}>
+            <DraggableFlatList
+              data={data} // the Item Array
+              horizontal={true} // horizontal view
+              renderItem={renderItem} // the item to render based on the props supplied by the Item Array 'data'
+              keyExtractor={(item, index) => `draggable-item-${item.key}`} //extract the key??
+              onDragEnd={({data}) => setData(data)} // set the indexes of the item array
+            />
+          </View>
         </View>
-        <DraggableFlatList
-          data={data} // the Item Array
-          horizontal={true} // horizontal view
-          renderItem={renderItem} // the item to render based on the props supplied by the Item Array 'data'
-          keyExtractor={(item, index) => `draggable-item-${item.key}`} //extract the key??
-          onDragEnd={({data}) => setData(data)} // set the indexes of the item array
-          style={{width: '60%'}}
-        />
       </View>
     </View>
   );
@@ -165,6 +160,20 @@ const styles = StyleSheet.create({
     height: 'auto',
     resizeMode: 'contain',
   },
+  screen: {
+    marginTop: 24,
+    flex: 1,
+
+  },
+  upperScreen:{
+    maxWidth: '90%',
+    maxHeight: '50%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    borderRadius: 20,
+    backgroundColor: '#ffffff',
+  }
 });
 
 export default UploadFile;

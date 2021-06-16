@@ -13,7 +13,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginTop: '6%',
   },
   btnContainer: {
