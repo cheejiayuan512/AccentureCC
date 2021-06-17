@@ -21,9 +21,15 @@ const AppStack = ({user}) => {
       options={{
         headerLeft: () => false,
       }}>
-      <Stack.Screen name="HomeScreen" children={()=><Home user={user} />} />
-      <Stack.Screen name="SettingsScreen" children={()=><Settings user={user} />} />
-      <Stack.Screen name="ActivitiesScreen" children={()=><Activities user={user} />} />
+      <Stack.Screen name="HomeScreen" children={() => <Home user={user} />} />
+      <Stack.Screen
+        name="SettingsScreen"
+        children={() => <Settings user={user} />}
+      />
+      <Stack.Screen
+        name="ActivitiesScreen"
+        children={() => <Activities user={user} />}
+      />
     </Stack.Navigator>
   );
 };
@@ -35,7 +41,7 @@ const AuthStack = ({user}) => {
       options={{
         headerLeft: () => false,
       }}>
-      <Stack.Screen name="AccountCreationScreen" component={AccountCreation}  />
+      <Stack.Screen name="AccountCreationScreen" component={AccountCreation} />
     </Stack.Navigator>
   );
 };
@@ -55,11 +61,11 @@ export const Navigator = ({user}) => {
       {accountToken === 'true' ? (
         <>
           <TopBar user={user} />
-          <AppStack user={user}/>
+          <AppStack user={user} />
         </>
       ) : (
         <>
-          <AuthStack user={user}/>
+          <AuthStack user={user} />
         </>
       )}
     </NavigationContainer>

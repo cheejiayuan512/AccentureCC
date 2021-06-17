@@ -136,8 +136,7 @@ const UploadFile = () => {
         size={20}
         onPress={takePicture}
       />
-      <View
-        style={styles.upperScreen}>
+      <View style={styles.upperScreen}>
         <View style={styles.screen}>
           <View style={{flex: 1}}>
             <DraggableFlatList
@@ -163,9 +162,8 @@ const styles = StyleSheet.create({
   screen: {
     marginTop: 24,
     flex: 1,
-
   },
-  upperScreen:{
+  upperScreen: {
     maxWidth: '90%',
     maxHeight: '50%',
     flexDirection: 'column',
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     borderRadius: 20,
     backgroundColor: '#ffffff',
-  }
+  },
 });
 
 export default UploadFile;
