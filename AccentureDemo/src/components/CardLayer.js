@@ -1,7 +1,17 @@
 import {Avatar, Card, Paragraph, Text, Title} from 'react-native-paper';
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
-
+import {
+    Dimensions, Image,
+    ImageBackground,
+    ScrollView,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+const juiceURI = 'https://secure.ap-tescoassets.com/assets/MY/511/8888002188511/ShotType1_540x540.jpg'
+const milkURI ='https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/12468436_LXL1.jpg'
+const tomatoURI = 'https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/12228635_XL1.jpg'
+const detergentURI ='https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13146962_XL1_20210121.jpg?w=1200&q=70'
+const chickenURI='https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/13097675_XL1.jpg'
 const LeftContent = props => (
   <Avatar.Icon
     {...props}
@@ -24,14 +34,62 @@ const RightContent = props => (
     </Text>
   </TouchableOpacity>
 );
+const IndivCard = ({title, expiry,imageURI,newprice,oldprice}) => (
+  <View style={styles.cardcontainer}>
+    <Card style={{width: '100%', height: '100%'}}>
+      <Image
+        style={{
+          width: '100%',
+          height: '60%',
+          resizeMode: 'stretch',
+        }}
+        source={{
+          uri: imageURI,
+        }}
+      />
+
+      {/** top -left */}
+      <View style={{position: 'absolute', top: 0, left: 0}}>
+        <Text
+          style={{
+            fontSize: 16,
+            color: 'white',
+            backgroundColor: 'red',
+            borderRadius: 2,
+            padding: 4,
+          }}>
+          Offer
+        </Text>
+      </View>
+      <Card.Title
+          style={{margin:'-5%'}}
+        title={title}
+        subtitle={`Expires in ${expiry} days`}
+        titleStyle={{marginBottom:'-5%', fontSize: 14, width:'90%'}}
+      /><View style={{flexDirection:'row',}}>
+        <Text style={{marginLeft:'5%',color:'blue', fontWeight:'bold', fontSize:14}}>{newprice}</Text>
+        <Text style={{marginLeft:'3%', fontSize:12, alignSelf:'center'}}>{oldprice}</Text></View>
+    </Card>
+  </View>
+);
 export const ProductCard = () => (
   <Card>
     <Card.Title
       title={'Products On Discount'}
       subtitle={
-        'Help reduce food waster and save! Products close to their sell-by dates are perfectly safe for consumption, but are available for a lower price.'
+        'Help reduce food wastage and save! Products close to their sell-by dates are perfectly safe for consumption, but are available for a lower price.'
       }
+      subtitleNumberOfLines={6}
     />
+    <Card.Content>
+      <ScrollView horizontal={true}>
+        <IndivCard title={'Greenleaf Organic Pineapple Juice'} expiry={2} imageURI={juiceURI} newprice={'$7.20'} oldprice={'$9.00'} />
+        <IndivCard title={'Bluetree Organic Milk'} expiry={3} imageURI={milkURI} newprice={'$3.10'} oldprice={'$4.00'}/>
+        <IndivCard title={'Redplant Organic Tomatoes'} expiry={1} imageURI={tomatoURI} newprice={'0.50'} oldprice={'$2.00'}/>
+        <IndivCard title={'Orangebranch Organic Detergent'} expiry={4} imageURI={detergentURI} newprice={'$9.10'} oldprice={'$14.00'}/>
+        <IndivCard title={'Blackflower Organic Chicken Breast'} expiry={5} imageURI={chickenURI} newprice={'$1.10'} oldprice={'$4.00'}/>
+      </ScrollView>
+    </Card.Content>
   </Card>
 );
 export const CardLayer = () => (
@@ -41,7 +99,6 @@ export const CardLayer = () => (
       left={LeftContent}
       right={RightContent}
     />
-    <Card.Actions />
     <Card.Content style={{marginTop: -25}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
         <View
@@ -81,6 +138,14 @@ export const CardLayer = () => (
 export const styles = {
   container: {
     flex: 1,
+  },
+  cardcontainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    width: 165,
+    height: 225,
+    margin: 10,
   },
   nav: {
     position: 'absolute',
@@ -126,5 +191,13 @@ export const styles = {
     marginBottom: 10,
     justifyContent: 'center',
     marginRight: 25,
+  },
+  noscrollable: {
+    flexGrow: 1,
+    height: Dimensions.get('window').height +50,
+  },
+  scrollable: {
+    flexGrow: 1,
+    height: 1200,
   },
 };

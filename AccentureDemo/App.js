@@ -17,11 +17,7 @@ const App: () => Node = () => {
   //TODO Jeff this is your navigation part
   return (
     <SafeAreaView style={backgroundStyle.container}>
-    <ScrollView style={{height:'110%'}}  contentContainerStyle={{flexGrow:1}}>
-     <View style={backgroundStyle.container}>
       <Navigator />
-     </View>
-    </ScrollView>
     </SafeAreaView>
   );
 };

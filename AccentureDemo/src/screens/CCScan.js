@@ -27,7 +27,9 @@ export function CCLandingScreen({navigation}) {
         }}
         source={require('../assets/landingBG.png')}>
         <ScrollView
-          contentContainerStyle={isScrollable?styles.noscrollable:styles.scrollable}>
+          contentContainerStyle={
+            isScrollable ? styles.noscrollable : styles.scrollable
+          }>
           <View style={styles.nav}>
             <IconButton
               icon="account-outline"
@@ -55,7 +57,7 @@ export function CCLandingScreen({navigation}) {
           <Text style={styles.IOMOBtext}>Welcome Back!</Text>
           <View style={styles.image}>
             <CardLayer />
-            <DropDownPanel setScroll={setScroll}/>
+            <DropDownPanel setScroll={setScroll} />
             <ProductCard />
           </View>
         </ScrollView>

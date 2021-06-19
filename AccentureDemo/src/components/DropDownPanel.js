@@ -12,11 +12,12 @@ const LandingListItem = ({title, description, icon, quantity}) => (
     right={() => <Text style={{alignSelf: 'center'}}>{quantity}</Text>}
   />
 );
-function CollapseView() {
+const CollapseView = ({setScroll}) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
+    setScroll(!collapsed);
   };
 
   const RightContent = () => (
@@ -36,11 +37,23 @@ function CollapseView() {
           <LandingListItem
             title={'Pineapple Juice'}
             icon={'bottle-soda-outline'}
-            quantity={'1 Bottle'}
+            quantity={'1 bottle'}
           />
-          <LandingListItem title={'Chicken Breast'} icon={'food-drumstick-outline'} quantity={'500g'} />
-          <LandingListItem title={'Tomatoes'} icon={'sprout-outline'} quantity={'4 medium'} />
-          <LandingListItem title={'Detergent'} icon={'bottle-tonic-skull-outline'} quantity={'1 bottle'} />
+          <LandingListItem
+            title={'Chicken Breast'}
+            icon={'food-drumstick-outline'}
+            quantity={'500g'}
+          />
+          <LandingListItem
+            title={'Tomatoes'}
+            icon={'sprout-outline'}
+            quantity={'4 medium'}
+          />
+          <LandingListItem
+            title={'Detergent'}
+            icon={'bottle-tonic-skull-outline'}
+            quantity={'1 bottle'}
+          />
         </View>
       </Collapsible>
     </Card>
