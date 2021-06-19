@@ -1,17 +1,28 @@
 import React from 'react';
-import {ImageBackground, TouchableOpacity, View} from 'react-native';
-import { Card, Colors, IconButton, Text } from "react-native-paper";
-import {CardLayer, styles} from '../components/CardLayer';
-import Panel from "../components/DropDownPanel";
-import CollapseView from "../components/DropDownPanel";
+import {
+  Dimensions,
+  ImageBackground,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {Colors, IconButton, Text} from 'react-native-paper';
+import { CardLayer, ProductCard, styles } from "../components/CardLayer";
+
+import DropDownPanel from '../components/DropDownPanel';
 export function CCLandingScreen({navigation}) {
   return (
     <View style={styles.container}>
       <ImageBackground
         style={{
-          flex: 1,
-          resizeMode: 'cover', // Not sure if this helps, but it was used in the docs, listed below
-          justifyContent: 'center',
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1,
         }}
         source={require('../assets/landingBG.png')}>
         <View style={styles.nav}>
@@ -41,7 +52,8 @@ export function CCLandingScreen({navigation}) {
         <Text style={styles.IOMOBtext}>Welcome Back!</Text>
         <View style={styles.image}>
           <CardLayer />
-          <CollapseView/>
+          <DropDownPanel />
+          <ProductCard/>
         </View>
       </ImageBackground>
     </View>

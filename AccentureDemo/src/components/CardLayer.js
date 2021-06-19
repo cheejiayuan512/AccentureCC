@@ -24,6 +24,16 @@ const RightContent = props => (
     </Text>
   </TouchableOpacity>
 );
+export const ProductCard = () => (
+  <Card>
+    <Card.Title
+      title={'Products On Discount'}
+      subtitle={
+        'Help reduce food waster and save! Products close to their sell-by dates are perfectly safe for consumption, but are available for a lower price.'
+      }
+    />
+  </Card>
+);
 export const CardLayer = () => (
   <Card style={{marginBottom: '5%'}}>
     <Card.Title
