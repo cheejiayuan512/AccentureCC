@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.zoontek.rnpermissions.RNPermissionsPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;

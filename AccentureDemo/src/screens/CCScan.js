@@ -1,17 +1,13 @@
-import React, {useState} from 'react';
-import {
-  Dimensions,
-  ImageBackground,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {Colors, IconButton, Text} from 'react-native-paper';
-import {CardLayer, ProductCard, styles} from '../components/CardLayer';
-
-import DropDownPanel from '../components/DropDownPanel';
-export function CCLandingScreen({navigation}) {
-  const [isScrollable, setScroll] = useState(true);
+import React from 'react';
+import {Dimensions, ImageBackground, View} from 'react-native';
+import {Text} from 'react-native-paper';
+import {styles} from '../components/CardLayer';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
+export function CCScanScreen({navigation}) {
+  const onSuccess = e => {
+    navigation.navigate(e.data);
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -26,43 +22,18 @@ export function CCLandingScreen({navigation}) {
           zIndex: -1,
         }}
         source={require('../assets/landingBG.png')}>
-        <ScrollView
-          contentContainerStyle={
-            isScrollable ? styles.noscrollable : styles.scrollable
-          }>
-          <View style={styles.nav}>
-            <IconButton
-              icon="account-outline"
-              color={Colors.white}
-              size={25}
-              onPress={() => console.log('Pressed')}
-            />
-            <TouchableOpacity
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 50,
-                height: 50,
-                backgroundColor: 'black',
-                borderRadius: 50,
-              }}>
-              <IconButton
-                icon="cart-outline"
-                color={Colors.white}
-                size={25}
-                onPress={() => console.log('Pressed')}
-              />
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.IOMOBtext}>Welcome Back!</Text>
-          <View style={styles.image}>
-            <CardLayer />
-            <DropDownPanel setScroll={setScroll} />
-            <ProductCard />
-          </View>
-        </ScrollView>
+        <Text style={styles.IOMOBtext}>Scan Your Product!</Text>
+        <QRCodeScanner
+          containerStyle={{flex: 4}}
+          fadeIn={true}
+          reactivate={true}
+          reactivateTimeout={15}
+          onRead={onSuccess}
+          flashMode={RNCamera.Constants.FlashMode.auto}
+        />
       </ImageBackground>
     </View>
   );
 }
-export default CCLandingScreen;
+
+export default CCScanScreen;

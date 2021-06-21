@@ -12,7 +12,7 @@ const LandingListItem = ({title, description, icon, quantity}) => (
     right={() => <Text style={{alignSelf: 'center'}}>{quantity}</Text>}
   />
 );
-const CollapseView = ({setScroll}) => {
+const CollapseView = ({setScroll, title, subtitle}) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleCollapsed = () => {
@@ -30,7 +30,7 @@ const CollapseView = ({setScroll}) => {
   );
   return (
     <Card style={{marginBottom: '5%'}}>
-      <Card.Title title="What You Need" right={RightContent} />
+      <Card.Title title={title} right={RightContent} subtitle={subtitle}/>
       <Collapsible collapsed={collapsed}>
         <View>
           <LandingListItem title={'Milk'} icon={'cow'} quantity={'2L'} />
@@ -58,7 +58,7 @@ const CollapseView = ({setScroll}) => {
       </Collapsible>
     </Card>
   );
-}
+};
 
 const styles = StyleSheet.create({
   paragraph: {
