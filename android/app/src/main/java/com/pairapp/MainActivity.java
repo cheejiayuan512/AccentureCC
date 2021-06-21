@@ -18,7 +18,7 @@ public class MainActivity extends ReactActivity {
           super.onCreate(savedInstanceState);
       }
   protected String getMainComponentName() {
-    return "pairapp";
+    return "AccentureCC";
   }
      @Override
      protected ReactActivityDelegate createReactActivityDelegate() {
